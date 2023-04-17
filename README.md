@@ -5,3 +5,9 @@
 3. After succeed to render the basic graph, add the requested indications
 4. Build a generic filters component that filters the graph's data 
 5. Write some unit/integration tests (React testing library / Cypress)
+
+# Run to project
+1. Clone the repo to your env
+2. `cd app`
+3. `npm install`
+4. `npm run dev`
