@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import {
   PieChartOutlined,
+  DesktopOutlined,
+  UserOutlined
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
@@ -24,7 +26,13 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('Graph', '1', <PieChartOutlined />)
+  getItem('Train graph', '1', <PieChartOutlined />),
+  getItem('Stations', '2', <DesktopOutlined />),
+  getItem('More', 'sub1', <UserOutlined />, [
+    getItem('Settings', '3'),
+    getItem('About', '4'),
+    getItem('Help', '5'),
+  ]),
 ];
 import './App.css'
 import TicketGraph from "./TicketGraph";
@@ -47,7 +55,7 @@ function App() {
             <Breadcrumb style={{ margin: '16px 0' }}>
               <Breadcrumb.Item>Train Ticket Graph</Breadcrumb.Item>
             </Breadcrumb>
-            <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
+            <div style={{ padding: 24, background: colorBgContainer }}>
               <TicketGraph/>
             </div>
           </Content>
