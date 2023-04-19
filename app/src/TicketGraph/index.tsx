@@ -1,8 +1,9 @@
 import G6 from '@antv/g6';
 import React, {useEffect} from "react";
 import ReactDOM from 'react-dom';
-import * as jsonData from '../train-ticket-fe.json';
 import {convertToGraphData, getColorByString} from "../TicketGraph/utils";
+import * as jsonData from "../train-ticket-fe.json";
+import FiltersBar from "./FiltersBar";
 
 G6.registerNode(
   'sql',
@@ -42,10 +43,12 @@ G6.registerNode(
   'single-node',
 );
 
+let graph = null;
+
 const TicketGraph = () => {
-  const ref = React.useRef(null);
-  let graph = null;
   const data = convertToGraphData(jsonData);
+  const [filteredData, setFilteredData] = React.useState(data)
+  const ref = React.useRef(null);
 
   useEffect(() => {
     if (!graph) {
@@ -115,18 +118,21 @@ const TicketGraph = () => {
         const { item } = evt;
         graph.setItemState(item, 'selected', true);
       });
-      graph.on('canvas:click', (evt) => {
+      graph.on('canvas:click', () => {
         graph.getEdges().forEach((edge) => {
           graph.clearItemStates(edge);
         });
       });
     }
-    graph.data(data);
+    graph.data(filteredData);
     graph.render();
 
-  }, [])
+  }, [filteredData])
 
-  return <div ref={ref}></div>;
+  return <div>
+    <FiltersBar data={data} setFilteredData={setFilteredData}/>
+    <div ref={ref}></div>
+  </div>;
 }
 
 export default TicketGraph

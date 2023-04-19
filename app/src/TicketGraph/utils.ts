@@ -1,6 +1,4 @@
-const flatEdge = (edge) => {
-  return edge.to.map(to => ({source: edge.from, target: to}))
-}
+const flatEdge = edge => edge.to.map(to => ({source: edge.from, target: to}))
 
 export const convertToGraphData = (data) => {
   return {

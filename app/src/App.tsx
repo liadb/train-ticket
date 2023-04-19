@@ -6,6 +6,8 @@ import {
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import './App.css'
+import TicketGraph from "./TicketGraph";
 
 const { Content, Footer, Sider } = Layout;
 
@@ -34,14 +36,13 @@ const items: MenuItem[] = [
     getItem('Help', '5'),
   ]),
 ];
-import './App.css'
-import TicketGraph from "./TicketGraph";
 
 function App() {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
 
   return (
     <div className="App">
@@ -56,7 +57,7 @@ function App() {
               <Breadcrumb.Item>Train Ticket Graph</Breadcrumb.Item>
             </Breadcrumb>
             <div style={{ padding: 24, background: colorBgContainer }}>
-              <TicketGraph/>
+              <TicketGraph />
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>Train Ticket ©2023 Created by liadb</Footer>
